@@ -15,11 +15,12 @@ public class StepsGenerator {
         rand = new Random();
     }
 
-    public List<Arrow> getArrowsList(int stepsNum) {
+    public List<String> getArrowsList(int stepsNum) {
         Random rand = new Random();
         return IntStream.range(1,stepsNum)
                 .map(num -> rand.nextInt(50))
                 .mapToObj(randNum -> arrowMap.getArrowByNumber(randNum))
+                .map(arrow -> arrow.toString())
                 .collect(Collectors.toList());
     }
 }

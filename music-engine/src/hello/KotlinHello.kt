@@ -12,4 +12,10 @@ fun main(args: Array<String>) {
         JavaHello.getHelloStringFromJava()
 
     }
+
+    get("/game-model") { req, res ->
+        SongsDetails.getSong("name")
+    }
+
+
 }
