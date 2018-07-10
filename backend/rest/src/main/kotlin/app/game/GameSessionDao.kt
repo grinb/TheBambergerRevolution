@@ -1,27 +1,28 @@
-package app.user
+package app.game
 
 import com.google.gson.Gson
-import java.io.FileReader
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
-class PlayerDao {
+class GameSessionDao {
 
     val gson = Gson()
 
     // "Initialize" with a few players
     // This demonstrates type inference, map-literals and named parameters
-    val players:HashMap<Int,Player> =  hashMapOf();
+    val sessions:HashMap<Int,GameSession> =  hashMapOf();
 
     var lastId: AtomicInteger = AtomicInteger(players.size - 1)
 
-    fun save(playerJson :String):Player {
-        var player:Player = gson.fromJson(playerJson, Player::class.java)
+    fun create(playerId :Int):GameSession {
+        var session:GameSession = GameSession()
 
         val id = lastId.incrementAndGet()
-        player.id = id;
-        players.put(id,player)
-        return player
+        session.id = id;
+        session.playerId = playerId
+
+        players.put(id,session)
+        return session
     }
 
     fun findById(id: Int): Player? {
