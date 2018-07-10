@@ -18,24 +18,28 @@
                 <executions>
                     <execution>
                         <id>compile</id>
-                        <goals> <goal>compile</goal> </goals>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
-                                <sourceDir>${project.basedir}/src/main/java</sourceDir>
+                                <sourceDir>${project.basedir}/src/java</sourceDir>
+                                <sourceDir>${project.basedir}/src/kotlin</sourceDir>
                             </sourceDirs>
                         </configuration>
                     </execution>
+                    <!--
                     <execution>
                         <id>test-compile</id>
                         <goals> <goal>test-compile</goal> </goals>
                         <configuration>
                             <sourceDirs>
-                                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
-                                <sourceDir>${project.basedir}/src/test/java</sourceDir>
+                                <sourceDir>${project.basedir}/src/java</sourceDir>
+                                <sourceDir>${project.basedir}/src/kotlin</sourceDir>
                             </sourceDirs>
                         </configuration>
                     </execution>
+                    -->
                 </executions>
             </plugin>
             <plugin>
@@ -77,7 +81,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>${main.class}</mainClass>
+                            <mainClass>go.KotlinHelloKt</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -94,7 +98,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>${main.class}</mainClass>
+                                    <mainClass>go.KotlinHelloKt</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -118,12 +122,6 @@
             <groupId>com.sparkjava</groupId>
             <artifactId>spark-kotlin</artifactId>
             <version>1.0.0-alpha</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.axet</groupId>
-            <artifactId>TarsosDSP</artifactId>
-            <version>2.4-1</version>
         </dependency>
 
         <dependency>
