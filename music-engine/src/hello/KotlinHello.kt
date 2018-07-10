@@ -8,5 +8,14 @@ fun getHelloStringFromJava() : String {
 }
 
 fun main(args: Array<String>) {
-    get("/hello") { req, res -> "Hello World" }
+    get("/hello") { req, res ->
+        JavaHello.getHelloStringFromJava()
+
+    }
+
+    get("/game-model") { req, res ->
+        SongsDetails.getSong("name")
+    }
+
+
 }
