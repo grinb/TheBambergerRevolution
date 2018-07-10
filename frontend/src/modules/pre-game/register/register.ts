@@ -12,6 +12,4 @@ export class Register extends Vue {
         console.log(this.sharedState);
         $event.preventDefault();
     }
-
-
 }
