@@ -34,7 +34,7 @@ public class Game {
     }
 
     public void initGame(){
-        if(players.size() > 1) {
+        if(players.size() > 1 && (this.instant == null)) {
             this.instant = Instant.now().plus(15, ChronoUnit.SECONDS);
         }
     }
