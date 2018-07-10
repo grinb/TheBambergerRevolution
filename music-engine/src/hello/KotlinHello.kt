@@ -1,8 +1,6 @@
 package hello
 import spark.Spark.*
 
-val KotlinHelloString : String = "Hello from Kotlin!"
-
 fun getHelloStringFromJava() : String {
     return "JavaHello.JavaHelloString!!";
 }
@@ -14,7 +12,7 @@ fun main(args: Array<String>) {
     }
 
     get("/game-model") { req, res ->
-        SongsDetails.getSong("name")
+        JsonConvertor.convertToJson(SongsDetails.getSong(req.queryParams("name")))
     }
 
 
