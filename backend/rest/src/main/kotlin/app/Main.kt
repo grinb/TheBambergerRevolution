@@ -1,6 +1,6 @@
 package app
 
-import app.game.GameSessionDao
+import app.game.GameManager
 import app.player.PlayerDao
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.gson.Gson
@@ -12,18 +12,18 @@ fun main(args: Array<String>) {
     exception(Exception::class.java) { e, req, res -> e.printStackTrace() }
 
     val playerDao = PlayerDao()
-    val sessionDao = GameSessionDao()
+    val gameManager = GameManager()
     val gson = Gson()
 
 
     path("/bamberger") {
 
-        get("") { req, res ->
+        get("/player") { req, res ->
             res.type("application/json")
             jacksonObjectMapper().writeValueAsString(playerDao.players)
         }
 
-        get("player/:id") { req, res ->
+        get("/player/:id") { req, res ->
 //            res.type("application/json")
             playerDao.findById(req.params("id").toInt())
         }
@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
 //            playerDao.findByEmail(req.params("email"))
 //        }
 
-        post("player") { req, res ->
+        post("/player") { req, res ->
 //            req.body()
             res.status(201)
             res.type("application/json")
@@ -55,11 +55,11 @@ fun main(args: Array<String>) {
         }
 /////////////////////////////////////////////////////////////////////////////////
 
-        post("session") { req, res ->
+        post("/session") { req, res ->
 
             res.status(201)
             res.type("application/json")
-            return@post gson.toJson(sessionDao.create(req.params("id").toInt()))
+            return@post gson.toJson(gameManager.create(req.qp("id").toInt()))
 
         }
 

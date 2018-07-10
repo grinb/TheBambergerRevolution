@@ -13,14 +13,11 @@ class GameManager {
     var lastId: AtomicInteger = AtomicInteger(games.size - 1)
 
     fun create(playerId: Int): GameSession {
-        var session: GameSession = GameSession()
+        val sessionId = lastId.incrementAndGet()
 
-        val id = lastId.incrementAndGet()
-        session.playerId = playerId
-        var game:Game = getCurrentGame()
-        session.gameId = game.id
-
-        players.put(id, session)
+        val currentGame:Game? = getCurrentGame()
+        var session: GameSession = GameSession(currentGame!!.id,playerId,0,0)
+        sessions.put(sessionId, session)
         return session
     }
 
@@ -47,7 +44,7 @@ class GameManager {
         games.remove(id)
     }
 
-    fun getCurrentGame(): Game {
+    fun getCurrentGame(): Game? {
 
         var game: Game?
         if (games.isEmpty()) {
