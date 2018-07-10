@@ -1,5 +1,5 @@
 export const sharedState = {
     name: '',
     waiting: false,
-    startAt: null,
+    startAt: null
 };
