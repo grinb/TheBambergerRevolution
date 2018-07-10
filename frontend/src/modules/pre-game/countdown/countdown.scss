@@ -1,0 +1,32 @@
+.countdown {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 300px;
+	background: rgba(0, 0, 0, .4);
+	color: #fff;
+	text-align: center;
+
+	.text {
+		font-size: 40px;
+		color: #EA6A09;
+		font-weight: bold;
+	}
+
+	.get-ready {
+		.counter {
+			font-size: 200px;
+			font-weight: bold;
+			line-height: 1;
+		}
+	}
+
+	.waiting {
+		.text {
+			line-height: 2;
+			padding: 60px;
+		}
+	}
+}
