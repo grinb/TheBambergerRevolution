@@ -1,6 +1,7 @@
 package app.game
 
 import com.google.gson.Gson
+import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -8,19 +9,26 @@ class GameManager {
 
     val gson = Gson()
 
-    val games: HashMap<Int, Game> = hashMapOf();
-    val sessions: HashMap<Int, GameSession> = hashMapOf();
+    var games: HashMap<Int, Game> = hashMapOf();
+    var sessions: HashMap<Int, GameSession> = hashMapOf();
     var lastId: AtomicInteger = AtomicInteger(games.size - 1)
 
     fun create(playerId: Int): GameSession {
         val sessionId = lastId.incrementAndGet()
 
         val currentGame:Game? = getCurrentGame()
-        var session: GameSession = GameSession(currentGame!!.id,playerId,0,0)
+        if(currentGame?.startTime!! > 0) {
+            setSessionStartTimeByGameId(currentGame!!.id, currentGame!!.startTime)
+        }
+
+        var session: GameSession = GameSession(sessionId,currentGame!!.id,playerId,0,0)
         sessions.put(sessionId, session)
         return session
     }
 
+    fun findSessionById(sessionId: Int): GameSession? {
+        return sessions[sessionId]
+    }
 
 //    fun save(playerJson :String):Player {
 //        var player:Player = gson.fromJson(playerJson, Player::class.java)
@@ -53,7 +61,18 @@ class GameManager {
             games.put(id, game)
         } else {
             game = games[0]
+            val gameStartTime = System.currentTimeMillis() + 15000
+            game?.startTime = gameStartTime
         }
         return game
+    }
+
+    fun setSessionStartTimeByGameId(gameId: Int, startTime: Long) {
+
+        for ((k, v) in sessions) {
+            if(v.gameId == gameId) {
+                v.startTime = startTime
+            }
+        }
     }
 }

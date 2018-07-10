@@ -63,6 +63,11 @@ fun main(args: Array<String>) {
 
         }
 
+        get("/session/:id") { req, res ->
+            res.status(200)
+            res.type("application/json")
+            return@get gson.toJson(gameManager.findSessionById(req.params("id").toInt()))
+        }
 
     }
 

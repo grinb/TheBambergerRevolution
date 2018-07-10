@@ -8,8 +8,6 @@ class PlayerDao {
 
     val gson = Gson()
 
-    // "Initialize" with a few players
-    // This demonstrates type inference, map-literals and named parameters
     val players:HashMap<Int,Player> =  hashMapOf();
 
     var lastId: AtomicInteger = AtomicInteger(players.size - 1)
