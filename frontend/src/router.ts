@@ -8,11 +8,11 @@ Vue.use(VueRouter);
 export const createRoutes = () => [
     {
         path: '/',
-        component: Register,
+        component: Register
     },
     {
         path: '/countdown',
-        component: Countdown,
+        component: Countdown
     }
 ];
 
