@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+html, body, #app-main {
+    height: 100%;
+  .centered {
+    text-align: center;
+    padding-top: 10em;
+    font-size: 18px;
+  }
+}
+
+.content {
+  margin-top: 50px;
+}
+.img-wrapper {
+  display: block;
+  text-align: center;
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
