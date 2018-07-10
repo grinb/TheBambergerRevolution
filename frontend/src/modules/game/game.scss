@@ -1,0 +1,18 @@
+.game-container {
+	display: flex;
+	height: 100%;
+
+	.score {
+		flex-grow: 1;
+		background: rgba(0, 0, 0, .4);
+	}
+
+	.game {
+		flex-grow: 11;
+
+		.logo {
+			width: 100px;
+			margin: 10px;
+		}
+	}
+}

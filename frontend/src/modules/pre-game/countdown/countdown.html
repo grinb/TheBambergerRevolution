@@ -1,0 +1,11 @@
+<div class="countdown">
+
+	<div class="waiting" v-if="isWaiting">
+		<div class="text">Waiting for other players</div>
+	</div>
+
+	<div class="get-ready" v-else>
+		<div class="text">Get ready!</div>
+		<div class="counter">{{counter}}</div>
+	</div>
+</div>
