@@ -26,10 +26,6 @@ class PlayerDao {
     }
 
 
-//    fun update(id: Int, score: Int) {
-//        players.put(id, Player(name = name, email = email, id = id))
-//    }
-
     fun delete(id: Int) {
         players.remove(id)
     }

@@ -1,6 +1,7 @@
 package app
 
 import app.game.GameManager
+import app.game.GameSession
 import app.player.PlayerDao
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.gson.Gson
@@ -12,7 +13,7 @@ fun main(args: Array<String>) {
     exception(Exception::class.java) { e, req, res -> e.printStackTrace() }
 
     val playerDao = PlayerDao()
-    val gameManager = GameManager()
+    val gameManager = GameManager(playerDao)
     val gson = Gson()
 
 
@@ -57,10 +58,14 @@ fun main(args: Array<String>) {
 
         post("/session") { req, res ->
 
-            res.status(201)
+            var session: GameSession = gameManager.create(req.qp("playerId").toInt())
+            if(session.id < 0) {
+                res.status(400)
+            } else {
+                res.status(201)
+            }
             res.type("application/json")
-            return@post gson.toJson(gameManager.create(req.qp("id").toInt()))
-
+            return@post gson.toJson(session)
         }
 
         get("/session/:id") { req, res ->
@@ -69,9 +74,17 @@ fun main(args: Array<String>) {
             return@get gson.toJson(gameManager.findSessionById(req.params("id").toInt()))
         }
 
+        put("/session/:id") { req, res ->
+            gameManager.updateSessionScore(req.params("id").toInt(), req.qp("score").toInt())
+            res.status(200)
+            res.type("application/json")
+            return@put gson.toJson(gameManager.findSessionById(req.params("id").toInt()))
+        }
+
+
     }
 
-    playerDao.players.forEach(::println)
+//    playerDao.players.forEach(::println)
 
 }
 
