@@ -1,14 +1,14 @@
 import Vue from 'vue';
-import VueRouter, { RouteConfig } from 'vue-router';
+import VueRouter from 'vue-router';
 import {Register} from './modules/pre-game/register/register';
 
 Vue.use(VueRouter);
 
-export const createRoutes: () => RouteConfig[] = () => [
+export const createRoutes = () => [
     {
         path: '/',
         component: Register,
     }
 ];
 
-export const createRouter = () => new VueRouter({ mode: 'history', routes: createRoutes() });
+export const createRouter = () => new VueRouter({mode: 'history', routes: createRoutes()});
