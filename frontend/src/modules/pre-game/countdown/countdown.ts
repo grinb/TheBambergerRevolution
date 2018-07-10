@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import {Vue, Component} from 'vue-property-decorator';
 import {sharedState} from '../../../store';
 import './countdown.scss';
@@ -18,7 +19,10 @@ export class Countdown extends Vue {
 
     getOpponents() {
         console.log('getOpponents');
-        // axios
+        axios.get('http://18.185.66.104:4567/start')
+            .then(() => {
+                this.$router.push({name: 'countdown'});
+            });
     }
 
     toggleWaiting() {
@@ -39,6 +43,7 @@ export class Countdown extends Vue {
         if (counter === 0) {
             clearInterval(this.interval);
             this.counter = 10;
+            this.$router.push({name: 'game'});
         } else {
             this.counter--;
         }

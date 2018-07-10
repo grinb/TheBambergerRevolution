@@ -9,14 +9,17 @@ Vue.use(VueRouter);
 export const createRoutes = () => [
     {
         path: '/',
+        name: 'register',
         component: Register
     },
     {
         path: '/countdown',
+        name: 'countdown',
         component: Countdown
     },
     {
         path: '/game',
+        name: 'game',
         component: GameContainer
     }
 ];
