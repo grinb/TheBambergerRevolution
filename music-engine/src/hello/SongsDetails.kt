@@ -6,7 +6,9 @@ object SongsDetails {
 
     init {
         val sg:StepsGenerator = StepsGenerator()
-        val shmekalachMap = hashMapOf("name" to GamePlanModel("name",java.net.URL("http://www.google.com"), 100, 100, sg.getArrowsList(10)))
+        val shmekalachMap = hashMapOf("name" to GamePlanModel("name", "file.mp4", 100, 100, sg.getArrowsList(10)),
+                "babyboy" to GamePlanModel("babyboy", "babyboy.mp4", 249, 659, sg.getArrowsList(377)),
+                "partyrock" to GamePlanModel("partyrock", "partyrock.mp4", 264, 461, sg.getArrowsList(572)))
         songsData = HashMap(shmekalachMap)
     }
 
